@@ -3,6 +3,7 @@ import os
 import cv2
 import numpy as np
 import torch
+from PIL import Image
 from skimage import io
 from skimage.transform import resize
 from torchvision import transforms
@@ -95,6 +96,7 @@ if __name__ == "__main__":
 
             # load and prepare image
             img = io.imread(os.path.join(root, file))
+            img = np.asarray(Image.fromarray(img).convert("RGB"))
             img = resize(img, IMAGE_SIZE)
             tensor_img = image_to_tensor(img)
 
